@@ -1,6 +1,6 @@
 CI smoke testS
 # Mission Control sistema
-
+Sanity PR test
 Mission Control sistema automatiškai veda projektus per Discovery fazę: užduoda 20 klausimų, atlieka realybės patikrą, sugeneruoja pritaikytus klausimus ir laukia patvirtinimo prieš bet kokius diegimus. Sistema saugo visus įrodymus ir kuria portfolio.
 
 ## Kaip vyksta procesas
