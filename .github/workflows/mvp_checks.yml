@@ -1,0 +1,29 @@
+name: MVP Checks
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  mvp-checks:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'  # Konservatyviai default, kol nėra įrodymo
+      
+      - name: Run Repo Doctor
+        run: |
+          python tools/repo_doctor.py
+        continue-on-error: false
+      
+      - name: Run Fact-check Gate
+        run: |
+          python gates/fact_check_gate.py
+        continue-on-error: false
