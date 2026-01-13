@@ -11,7 +11,7 @@ Mission Control sistema automatiškai veda projektus per Discovery fazę: užduo
 4. **Understanding Gate** - laukiamas TAIP/NE patvirtinimas
 5. **MVP implementacija** - tik po patvirtinimo
 
-## Struktūra
+## Struktūra test
 
 - `templates/` - šablonai projektams (PROJECT_BRIEF.md, EVIDENCE_MANIFEST.md, PROJECT_PORTFOLIO.md)
 - `projects/` - realūs projektai (kiekvienas projektas `projects/<project_name>/`)
