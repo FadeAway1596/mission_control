@@ -50,6 +50,7 @@ def main():
         (root / "ARCHITECT_HANDOFF.md", "ARCHITECT_HANDOFF.md"),
         (root / "DISCOVERY_QUESTIONS.md", "DISCOVERY_QUESTIONS.md"),
         (root / "PROJECT_PORTFOLIO.md", "PROJECT_PORTFOLIO.md"),
+        (root / "CONTEXT_PACK.md", "CONTEXT_PACK.md"),
     ]
     
     for filepath, name in root_files:
@@ -63,6 +64,8 @@ def main():
         (root / "projects", "projects/"),
         (root / "tools", "tools/"),
         (root / "gates", "gates/"),
+        (root / "policy", "policy/"),
+        (root / "runs", "runs/"),
         (root / ".github" / "workflows", ".github/workflows/"),
     ]
     
@@ -100,6 +103,18 @@ def main():
     if not exists:
         errors.append(error)
     
+    # Tikriname sistemos kaulus (v0.2)
+    system_bones = [
+        (root / "CONTEXT_PACK.md", "CONTEXT_PACK.md"),
+        (root / "policy" / "POLICY.md", "policy/POLICY.md"),
+        (root / "runs" / "RUN_LEDGER.md", "runs/RUN_LEDGER.md"),
+    ]
+    
+    for filepath, name in system_bones:
+        exists, error = check_file_exists(filepath, name)
+        if not exists:
+            errors.append(error)
+    
     # Semantinė patikra: templates/PROJECT_BRIEF.md antraštės
     brief_template = root / "templates" / "PROJECT_BRIEF.md"
     exists, error = check_template_headers(brief_template)
@@ -112,7 +127,7 @@ def main():
     print("=" * 60)
     
     if errors:
-        print("\n❌ RASTOS KLAIDOS:\n")
+        print("\n[FAIL] RASTOS KLAIDOS:\n")
         for error in errors:
             print(f"  • {error}")
         print("\n" + "=" * 60)
@@ -120,12 +135,13 @@ def main():
         print("=" * 60)
         sys.exit(1)
     else:
-        print("\n✅ Visi patikrinimai praeiti sėkmingai!")
+        print("\n[PASS] Visi patikrinimai praeiti sekmingai!")
         print("\nPatikrinta:")
-        print("  • Root failai (README.md, ARCHITECT_HANDOFF.md, DISCOVERY_QUESTIONS.md, PROJECT_PORTFOLIO.md)")
-        print("  • Katalogai (templates/, projects/, tools/, gates/, .github/workflows/)")
+        print("  • Root failai (README.md, ARCHITECT_HANDOFF.md, DISCOVERY_QUESTIONS.md, PROJECT_PORTFOLIO.md, CONTEXT_PACK.md)")
+        print("  • Katalogai (templates/, projects/, tools/, gates/, policy/, runs/, .github/workflows/)")
         print("  • Template failai (PROJECT_BRIEF.md, EVIDENCE_MANIFEST.md, PROJECT_PORTFOLIO.md)")
         print("  • Tool failai (repo_doctor.py, fact_check_gate.py)")
+        print("  • Sistemos kaulai (CONTEXT_PACK.md, policy/POLICY.md, runs/RUN_LEDGER.md)")
         print("  • Workflow failas (mvp_checks.yml)")
         print("  • Semantinė patikra (PROJECT_BRIEF.md privalomos antraštės)")
         print("\n" + "=" * 60)
